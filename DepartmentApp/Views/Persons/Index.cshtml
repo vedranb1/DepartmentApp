@@ -1,0 +1,46 @@
+﻿@model List<DepartmentApp.Models.Person>
+
+<div class="p-4" style="border-radius:20px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Person List</h2>
+        </div>
+        <div class="col-6 text-primary">
+            <div class="ml-auto">
+                <a asp-action="Create" class="btn btn-primary text-white"><i class="fas fa-plus"></i> &nbsp; Create New Person</a>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <table id="tblData" class="table table-bordered" style="width:100%">
+            <thead class="thead-dark">
+                <tr class="table-danger">
+                    <th scope="col" width="25%">First Name</th>
+                    <th scope="col" width="25%">Last Name</th>
+                    <th scope="col" width="25%">Department</th>
+                    <th scope="col" width="25%">Action</th>
+                </tr> 
+            </thead>
+            <tbody>
+                @foreach(var person in Model)
+                {
+                    <tr>
+                        <td scope="row" width="25%">@person.FirstName</td>
+                        <td width="25%">@person.LastName</td>
+                        <td width="25%">@person.Department.Name</td>
+                        <td width="25%">
+                                <a href="/persons/Update/@person.Id" class="btn btn-secondary text-white"
+                                    style="cursor: pointer;">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="/persons/Delete/@person.Id" class="btn btn-danger text-white"
+                                    style="cursor: pointer;">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model List<DepartmentApp.Models.Department>
+
+<div class="p-4" style="border-radius:20px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Department List</h2>
+        </div>
+        <div class="col-6 text-primary ml-auto">
+            <a asp-action="Create" class="btn btn-primary text-white"><i class="fas fa-plus"></i> &nbsp; Create New Department</a>
+        </div>
+    </div>
+    <div class="mt-3">
+        <table id="tblData" class="table table-bordered" style="width:100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" width="50%">Name</th>
+                    <th scope="col" width="50%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var department in Model)
+                {
+                    <tr>
+                        <td scope="row" width="50%">@department.Name</td>
+                        <td width="50%">
+                            <a href="/departments/Update/@department.Id" class="btn btn-secondary text-white"
+                                style="cursor: pointer;">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="/departments/Delete/@department.Id" class="btn btn-danger text-white"
+                                style="cursor: pointer;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

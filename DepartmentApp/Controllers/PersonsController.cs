@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using DepartmentApp.Models;
 using DepartmentApp.Models.ViewModels;
 using DepartmentApp.Repository.IRepository;
@@ -28,7 +28,7 @@ namespace DepartmentApp.Controllers
 
         public IActionResult Create()
         {
-            PersonViewModel createPersonVM = new PersonViewModel()
+            PersonViewModel personVM = new PersonViewModel()
             {
                 Person = new Person(),
                 DepartmentDropDown = _dRepo.GetDepartments().Select(dep => new SelectListItem
@@ -37,7 +37,7 @@ namespace DepartmentApp.Controllers
                     Value = dep.Id.ToString()
                 })
             };
-            return View(createPersonVM);
+            return View(personVM);
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace DepartmentApp.Controllers
 
         public IActionResult Update(int? id)
         {
-            PersonViewModel createPersonVM = new PersonViewModel()
+            PersonViewModel personVM = new PersonViewModel()
             {
                 Person = _pRepo.GetPerson(id.GetValueOrDefault()),
                 DepartmentDropDown = _dRepo.GetDepartments().Select(person => new SelectListItem
@@ -75,7 +75,7 @@ namespace DepartmentApp.Controllers
             {
                 return NotFound();
             }
-            return View(createPersonVM);
+            return View(personVM);
         }
 
         [HttpPost]
@@ -92,7 +92,7 @@ namespace DepartmentApp.Controllers
 
         public IActionResult Delete(int? id)
         {
-            PersonViewModel createPersonVM = new PersonViewModel()
+            PersonViewModel personVM = new PersonViewModel()
             {
                 Person = _pRepo.GetPerson(id.GetValueOrDefault()),
                 DepartmentDropDown = _dRepo.GetDepartments().Select(person => new SelectListItem
@@ -113,7 +113,7 @@ namespace DepartmentApp.Controllers
             {
                 return NotFound();
             }
-            return View(createPersonVM);
+            return View(personVM);
         }
 
         [HttpPost]
